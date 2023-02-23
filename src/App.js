@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import Tree from "./Tree.jsx";
+import { useState, useEffect } from "react";
+import { fetchFn } from "./clientApi";
 
 function App() {
+  const currDate = new Date();
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const requestData = async () => {
+      const apiData = await fetchFn();
+      console.log(apiData);
+      setData(apiData);
+    };
+    requestData();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <h1>Date: {currDate.toLocaleString()}</h1>
+        <Tree data={data} />
+      </div>
     </div>
   );
 }
