@@ -5,7 +5,7 @@ const TreeChildren = ({ children, indentLvl }) => {
   console.log(children);
   const padding = indentLvl * 20;
   return (
-    <div style={{ paddingLeft: `${padding}px`, color: "green" }}>
+    <div style={{ paddingLeft: `${padding}px`}}>
       {children.map((item) => {
         return (
           <TreeItem
